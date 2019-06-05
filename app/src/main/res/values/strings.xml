@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BAZ</string>
+    <string name="opciones_del_menu_miguel">Opciones del menu</string>
+    <string name="ws_post_miguel">Ws Post</string>
 </resources>
