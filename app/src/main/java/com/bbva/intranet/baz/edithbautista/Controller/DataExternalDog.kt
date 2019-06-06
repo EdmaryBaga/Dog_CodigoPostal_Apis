@@ -1,15 +1,54 @@
 package com.bbva.intranet.baz.edithbautista.Controller
 
+import android.os.AsyncTask
+import android.os.Parcel
+import android.os.Parcelable
 import com.bbva.intranet.baz.WS.APIDogRaza
+import com.bbva.intranet.baz.edithbautista.Fragments.ListBreedFragment
 import com.bbva.intranet.baz.edithbautista.model.DogImages
 import com.bbva.intranet.baz.edithbautista.model.DogListBreed
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DataExternalDog{
+ open class DataExternalDog() : AsyncTask<Call<DogListBreed>, Void, List<String>>() {
 
-        fun getImagesRace(raza: String): List<String>? {
+     companion object{
+         fun getnewInstance(): DataExternalDog {
+             return DataExternalDog()
+         }
+     }
+
+     open override fun doInBackground(vararg params: Call<DogListBreed>): List<String>? {
+             var listaR : List<String>? = listOf()
+
+             var lista:List<String>? = listOf()
+             val listRaces = APIDogRaza.getRetrofitRaces()
+             val call = listRaces.getAllRaces()
+             //ListBreedFragment.newInstance()
+             call.enqueue(object :Callback<DogListBreed>{
+
+                 override fun onFailure(call: Call<DogListBreed>, t: Throwable) {
+                     print("No hubo respuesta")
+                     ListBreedFragment.newInstance()
+                 }
+
+                 override fun onResponse(call: Call<DogListBreed>, response: Response<DogListBreed>) {
+                     listaR = response?.body()?.message
+                     print("la peticion se realizo")
+                     ListBreedFragment.newInstance().ListaRazas = listaR
+                 }
+
+             })
+             //ListBreedFragment.newInstance()
+             lista = listaR
+             return listaR
+     }
+
+
+
+
+    open fun getImagesRace(raza: String): List<String>? {
             var urlF= "/api/breed/${raza}/images"
 
             var lista : List<String>? = listOf()
@@ -27,20 +66,30 @@ class DataExternalDog{
             return lista
         }
 
-        fun getRaces(raza: String): List<String>? {
+        open fun getRaces(): List<String>? {
             var listaR : List<String>? = listOf()
-            var listImage = APIDogRaza.getRetrofitRaces()
-            var call = listImage.getAllRaces()
-            call.enqueue(object : Callback<DogListBreed> {
+
+            var lista:List<String>? = listOf()
+            val listRaces = APIDogRaza.getRetrofitRaces()
+            val call = listRaces.getAllRaces()
+            //ListBreedFragment.newInstance()
+            call.enqueue(object :Callback<DogListBreed>{
+
                 override fun onFailure(call: Call<DogListBreed>, t: Throwable) {
-                    print("Respuesta No exitosa")
+                    print("No hubo respuesta")
+                    ListBreedFragment.newInstance()
                 }
 
                 override fun onResponse(call: Call<DogListBreed>, response: Response<DogListBreed>) {
-                    listaR= response?.body()?.message
-                    print("Respuesta exitosa")
+                    listaR = response?.body()?.message
+                    print("la peticion se realizo")
+                    ListBreedFragment.newInstance().CreaRecyaler(listaR)
                 }
+
             })
+            //ListBreedFragment.newInstance()
+            lista = listaR
             return listaR
         }
+
 }
