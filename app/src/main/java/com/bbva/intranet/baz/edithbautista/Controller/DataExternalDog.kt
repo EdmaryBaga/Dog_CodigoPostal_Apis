@@ -36,7 +36,7 @@ import retrofit2.Response
                  override fun onResponse(call: Call<DogListBreed>, response: Response<DogListBreed>) {
                      listaR = response?.body()?.message
                      print("la peticion se realizo")
-                     ListBreedFragment.newInstance().ListaRazas = listaR
+                     ListBreedFragment.newInstance().ListaRazas = listaR!!
                  }
 
              })
