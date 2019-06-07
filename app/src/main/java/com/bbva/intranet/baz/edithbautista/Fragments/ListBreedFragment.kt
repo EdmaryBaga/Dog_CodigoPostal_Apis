@@ -6,9 +6,7 @@ import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import com.bbva.intranet.baz.R
 
@@ -29,6 +27,7 @@ companion object{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
          Handler().postDelayed({
              mRecycler = view?.findViewById(R.id.lista_razas)
              linearLayout = LinearLayoutManager(activity)
@@ -36,12 +35,19 @@ companion object{
              mAdapter = RaceAdapter(ListaRazas!!)
              mRecycler?.adapter = mAdapter
          }, 1000)
+
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.races_dog_list_fragment,container,false)
         mRecycler = v.findViewById(R.id.lista_razas)
         return v
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.menu_lista_fragment, menu)
     }
 
     fun resive(list:MutableList<String>?){

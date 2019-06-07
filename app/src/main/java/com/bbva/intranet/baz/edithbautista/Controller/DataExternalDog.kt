@@ -1,6 +1,5 @@
 package com.bbva.intranet.baz.edithbautista.Controller
 
-import android.os.AsyncTask
 import com.bbva.intranet.baz.WS.APIDogRaza
 import com.bbva.intranet.baz.edithbautista.Fragments.ListBreedFragment
 import com.bbva.intranet.baz.edithbautista.model.DogImages
@@ -9,7 +8,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
- open class DataExternalDog() {
+open class DataExternalDog() {
 
      companion object{
          fun getnewInstance(): DataExternalDog {
@@ -29,15 +28,12 @@ import retrofit2.Response
                      print("No hubo respuesta")
                      ListBreedFragment.newInstance()
                  }
-
                  override fun onResponse(call: Call<DogListBreed>, response: Response<DogListBreed>) {
                      listaR.addAll(response?.body()?.message!!)
                      print("la peticion se realizo")
                      frag.resive(listaR)
                  }
              })
-             //ListBreedFragment.newInstance()
-
              return listaR
          }
 

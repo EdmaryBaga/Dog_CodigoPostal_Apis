@@ -25,7 +25,8 @@ class LoginFragment : Fragment() {
         fun newInstance(): LoginFragment {
             return LoginFragment()
         }
-        var accesoFrag = false
+        //Modificar despues de las pruebas
+        var accesoFrag = true
         var usu= " "
         var usuarioData=Usuario(null,null)
 
@@ -62,14 +63,6 @@ class LoginFragment : Fragment() {
             var pwd = edit_txt_pwd.text.toString()
             usuarioData=Usuario(usu,pwd)
             onCreate(savedInstanceState)
-
-            /*val fragList = ListBreedFragment()
-            DogActivity()
-            var fm = fragmentManager?.beginTransaction()
-            fm?.replace(R.id.fragment_container,fragList )
-            fm?.addToBackStack(null)
-            fm?.commit()
-            DataExternalDog.getRaces()*/
         }
         return v
     }
