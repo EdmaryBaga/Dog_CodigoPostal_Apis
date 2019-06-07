@@ -2,13 +2,13 @@ package com.bbva.intranet.baz.WS
 
 import com.bbva.intranet.baz.edithbautista.model.DogImages
 import com.bbva.intranet.baz.edithbautista.model.DogListBreed
+import com.bbva.intranet.baz.edithbautista.model.LoginRespuesta
+import com.bbva.intranet.baz.edithbautista.model.Usuario
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
-import retrofit2.http.GET
-import retrofit2.http.QueryMap
-import retrofit2.http.Url
+import retrofit2.http.*
 
 interface APIDogRaza{
 
@@ -37,9 +37,26 @@ interface APIDogRaza{
             .baseUrl("http://www.mocky.io")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        //return retrofit.create(ListaMensajeApi::class.java)
         return retrofit.create(APIDogRaza::class.java)
     }
+    }
+}
+
+interface ApiLoginDog{
+    @POST(value = "/LoginService")
+    @Headers("Content-Type:application/json")
+    fun sendUsu(@Body modelusu:Usuario): Call<LoginRespuesta>
+
+    companion object{
+
+        fun getClienteUsuario(): ApiLoginDog {
+            val retrofit = Retrofit.Builder()
+                .baseUrl("http://5ca653603a082600142796d8.mockapi.io")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+            return retrofit.create(ApiLoginDog::class.java)
+        }
+
     }
 
 }

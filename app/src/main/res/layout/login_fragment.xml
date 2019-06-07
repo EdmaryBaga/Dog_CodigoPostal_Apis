@@ -26,7 +26,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="28dp"/>
     <EditText
-            android:id="@+id/edit_txt_email"
+            android:id="@+id/edit_txt_usuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/label_usu"
@@ -40,7 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/contrase_a"
-        app:layout_constraintTop_toBottomOf="@+id/edit_txt_email"
+        app:layout_constraintTop_toBottomOf="@+id/edit_txt_usuario"
         android:layout_marginTop="15dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"

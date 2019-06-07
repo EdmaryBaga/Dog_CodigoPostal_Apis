@@ -42,7 +42,6 @@ companion object{
         val v = inflater.inflate(R.layout.races_dog_list_fragment,container,false)
         mRecycler = v.findViewById(R.id.lista_razas)
         return v
-
     }
 
     fun resive(list:MutableList<String>?){
@@ -58,18 +57,16 @@ companion object{
         }
     }
 
-    inner class RaceAdapter(val listaRazas: MutableList<String>): RecyclerView.Adapter<RaceHolder>() {
+    inner class RaceAdapter(val listaRazas: List<String>): RecyclerView.Adapter<RaceHolder>() {
         override fun onCreateViewHolder(v: ViewGroup, viewType: Int): RaceHolder {
             val inflater = LayoutInflater.from(activity)
             val view = inflater.inflate(R.layout.race_dog_item, v, false)
             return RaceHolder(view)
 
         }
-
         override fun getItemCount(): Int {
             return listaRazas.size
         }
-
         override fun onBindViewHolder(holder: RaceHolder, position: Int) {
             var razaTxt = listaRazas.get(position)
             holder.bin(razaTxt)

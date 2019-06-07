@@ -2,18 +2,19 @@ package com.bbva.intranet.baz.edithbautista.Fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import com.bbva.intranet.baz.R
 import com.bbva.intranet.baz.edithbautista.Controller.DataExternalDog
+import com.bbva.intranet.baz.edithbautista.Controller.DataExternalUsuario
 import com.bbva.intranet.baz.edithbautista.activities.DogActivity
 
-import com.bbva.intranet.baz.edithbautista.activities.SingleFragmentActivity
-import com.bumptech.glide.manager.SupportRequestManagerFragment
-import kotlinx.android.synthetic.main.login_fragment.*
+import com.bbva.intranet.baz.edithbautista.model.Usuario
 
 class LoginFragment : Fragment() {
 
@@ -24,14 +25,27 @@ class LoginFragment : Fragment() {
         fun newInstance(): LoginFragment {
             return LoginFragment()
         }
+        var accesoFrag = false
+        var usu= " "
+        var usuarioData=Usuario(null,null)
+
     }
 
     lateinit var btn_iniciarSesion:Button
-
+    lateinit var edit_txt_usuario:EditText
+    lateinit var edit_txt_pwd:EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
+        Handler().postDelayed({
+            DataExternalUsuario.sendUsuario(usuarioData)
+        }, 2000)
+        if (accesoFrag){
+            creaFragList()
+        }
+    }
+    fun permisoAcceso(access: Boolean, usuario: String?){
+        accesoFrag = access
+        usu= usuario.toString()
     }
 
 
@@ -40,17 +54,34 @@ class LoginFragment : Fragment() {
         val v= inflater.inflate(R.layout.login_fragment, container, false)
 
         btn_iniciarSesion = v.findViewById(R.id.btn_login)
+        edit_txt_usuario = v.findViewById(R.id.edit_txt_usuario)
+        edit_txt_pwd = v.findViewById(R.id.edit_txt_contrasena)
         btn_iniciarSesion.setOnClickListener {
 
-            val fragList = ListBreedFragment()
+            var usu = edit_txt_usuario.text.toString()
+            var pwd = edit_txt_pwd.text.toString()
+            usuarioData=Usuario(usu,pwd)
+            onCreate(savedInstanceState)
+
+            /*val fragList = ListBreedFragment()
             DogActivity()
             var fm = fragmentManager?.beginTransaction()
             fm?.replace(R.id.fragment_container,fragList )
             fm?.addToBackStack(null)
             fm?.commit()
-            DataExternalDog.getRaces()
+            DataExternalDog.getRaces()*/
         }
         return v
+    }
+
+    fun creaFragList(){
+        val fragList = ListBreedFragment()
+        DogActivity()
+        var fm = fragmentManager?.beginTransaction()
+        fm?.replace(R.id.fragment_container,fragList )
+        fm?.addToBackStack(null)
+        fm?.commit()
+        DataExternalDog.getRaces()
     }
 
 }
