@@ -1,8 +1,6 @@
 package com.bbva.intranet.baz.edithbautista.Controller
 
 import android.os.AsyncTask
-import android.os.Parcel
-import android.os.Parcelable
 import com.bbva.intranet.baz.WS.APIDogRaza
 import com.bbva.intranet.baz.edithbautista.Fragments.ListBreedFragment
 import com.bbva.intranet.baz.edithbautista.model.DogImages
@@ -32,13 +30,11 @@ import retrofit2.Response
                      print("No hubo respuesta")
                      ListBreedFragment.newInstance()
                  }
-
                  override fun onResponse(call: Call<DogListBreed>, response: Response<DogListBreed>) {
                      listaR = response?.body()?.message
                      print("la peticion se realizo")
                      ListBreedFragment.newInstance().ListaRazas = listaR!!
                  }
-
              })
              //ListBreedFragment.newInstance()
              lista = listaR
