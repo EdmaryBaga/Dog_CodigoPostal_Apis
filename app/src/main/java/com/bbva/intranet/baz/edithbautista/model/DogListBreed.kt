@@ -6,4 +6,4 @@ data class DogListBreed(
     @SerializedName("status")
     var status:String,
     @SerializedName("message")
-    var message:List<String>)
+    var message:MutableList<String>)

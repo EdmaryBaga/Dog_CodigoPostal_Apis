@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.bbva.intranet.baz.R
+import com.bbva.intranet.baz.edithbautista.Controller.DataExternalDog
 import com.bbva.intranet.baz.edithbautista.activities.DogActivity
 
 import com.bbva.intranet.baz.edithbautista.activities.SingleFragmentActivity
@@ -40,12 +41,14 @@ class LoginFragment : Fragment() {
 
         btn_iniciarSesion = v.findViewById(R.id.btn_login)
         btn_iniciarSesion.setOnClickListener {
+
             val fragList = ListBreedFragment()
             DogActivity()
             var fm = fragmentManager?.beginTransaction()
             fm?.replace(R.id.fragment_container,fragList )
             fm?.addToBackStack(null)
             fm?.commit()
+            DataExternalDog.getRaces()
         }
         return v
     }
