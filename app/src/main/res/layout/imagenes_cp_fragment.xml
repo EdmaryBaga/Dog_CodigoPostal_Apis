@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+        android:id="@+id/cont_cp_fragmrnt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+            android:id="@+id/txt_raza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cp_txt"
+            android:textStyle="bold"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
+
+            android:layout_marginTop="407dp"/>
+    <EditText
+            android:id="@+id/ccp_editxt"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_raza"
+            android:foregroundGravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"/>
+    <Button
+        android:id="@+id/btn_enviar_cp"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:text="@string/btn_enviar_cp"
+        android:layout_below="@+id/ccp_editxt"
+        android:layout_centerHorizontal="true"
+        android:padding="1dp"
+        android:background="@color/Azul_enviar"
+        android:layout_marginTop="5dp"
+    />
+</RelativeLayout>

@@ -1,9 +1,6 @@
 package com.bbva.intranet.baz.WS
 
-import com.bbva.intranet.baz.edithbautista.model.DogImages
-import com.bbva.intranet.baz.edithbautista.model.DogListBreed
-import com.bbva.intranet.baz.edithbautista.model.LoginRespuesta
-import com.bbva.intranet.baz.edithbautista.model.Usuario
+import com.bbva.intranet.baz.edithbautista.model.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,14 +10,11 @@ import retrofit2.http.*
 interface APIDogRaza{
 
     //@QueryMap url:Map<String, String>
-    //@Url url:String
     @GET
     fun getDogImage(@Url url:String):Call<DogImages>
 
     @GET("/v2/5cf93b70340000262e01b465")
-    //Modificar el tipo generico
     fun getAllRaces():Call<DogListBreed>
-//http://www.mocky.io/v2/5cf93b70340000262e01b465
 
     companion object{
         fun getRetrofit(): APIDogRaza {
@@ -28,7 +22,6 @@ interface APIDogRaza{
                 .baseUrl("https://dog.ceo")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-            //return retrofit.create(ListaMensajeApi::class.java)
             return retrofit.create(APIDogRaza::class.java)
         }
 
@@ -56,6 +49,24 @@ interface ApiLoginDog{
                 .build()
             return retrofit.create(ApiLoginDog::class.java)
         }
+
+    }
+}
+
+interface ApiCp{
+
+    @GET
+    fun getColonias(@Url url:String):Call<Cp>
+
+    companion object{
+        fun creaClienteCp(): ApiCp {
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://api-codigos-postales.herokuapp.com/v2/codigo_postal/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+            return retrofit.create(ApiCp::class.java)
+        }
+
 
     }
 

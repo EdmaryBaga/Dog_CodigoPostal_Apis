@@ -59,8 +59,8 @@ class LoginFragment : Fragment() {
         edit_txt_pwd = v.findViewById(R.id.edit_txt_contrasena)
         btn_iniciarSesion.setOnClickListener {
 
-            var usu = edit_txt_usuario.text.toString()
-            var pwd = edit_txt_pwd.text.toString()
+            val usu = edit_txt_usuario.text.toString()
+            val pwd = edit_txt_pwd.text.toString()
             usuarioData=Usuario(usu,pwd)
             onCreate(savedInstanceState)
         }
@@ -70,7 +70,7 @@ class LoginFragment : Fragment() {
     fun creaFragList(){
         val fragList = ListBreedFragment()
         DogActivity()
-        var fm = fragmentManager?.beginTransaction()
+        val fm = fragmentManager?.beginTransaction()
         fm?.replace(R.id.fragment_container,fragList )
         fm?.addToBackStack(null)
         fm?.commit()

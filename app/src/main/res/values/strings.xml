@@ -6,4 +6,7 @@
     <string name="contrase_a">Contraseña</string>
     <string name="iniciar_sesion">Iniciar sesion</string>
     <string name="ordenar_item_menu">Ordenar</string>
+    <string name="cp_txt">Ingresa tu codigo postal</string>
+    <string name="btn_enviar_cp">enviar cp</string>
+    <string name="btn_ok">Ok</string>
 </resources>
